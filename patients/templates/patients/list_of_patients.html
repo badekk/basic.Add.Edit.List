@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for patient in object_list %}
+  <div class="container mt-3">
+    <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#demo{{ patient.id }}">{{ patient.id}}. {{ patient.name }} {{ patient.surname }}</button>
+    <div id="demo{{ patient.id }}" class="collapse">
+      <form action="edit_patients/{{ patient.id }}">
+        <button type="submit">Edit</button>
+      </form>
+      <p>Pesel: {{ patient.pesel }} </p>
+      <p>Date of admission: {{ patient.date_now | date:'d-m-Y H:i' }}</p>
+      <p>Doctors prescription: {{ patient.info }}</p>
+    </div>
+  </div>
+{% endfor %}
+
+
+{% endblock %}
